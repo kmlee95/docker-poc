@@ -5,6 +5,7 @@ const db = require("./db");
 
 const app = express();
 
+//json 해석
 app.use(bodyParser.json());
 
 db.pool.query(
