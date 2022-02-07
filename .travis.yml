@@ -23,12 +23,8 @@ after_success:
   - docker push kmlee95/docker-nginx
 
 deploy:
-  provider: elasticbeanstalk
   edge: true
-  access_key_id:
-    secure: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_ACCESS_KEY
+  provider: elasticbeanstalk
   region: "us-east-1"
   app: "docker-fullstack-app"
   env: "Dockerfullstackapp-env"
@@ -36,3 +32,6 @@ deploy:
   bucket_path: "docker-fullstack-app"
   on:
     branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
