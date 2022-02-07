@@ -1,10 +1,7 @@
 version: "3"
-
 services:
   frontend:
-    build:
-      dockerfile: kmlee95/docker-frontend
-      context: ./frontend
+    image: kmlee95/docker-frontend
     volumes:
       - /app/node_modules
       - ./frontend:/app
@@ -16,10 +13,6 @@ services:
     image: kmlee95/docker-nginx
     ports: 
       - "80:80"
-    mem_limit: 128m
-    links:
-      - frontend
-      - backend
 
   backend:
     image: kmlee95/docker-backend
@@ -27,10 +20,10 @@ services:
     volumes:
       - /app/node_modules
       - ./backend:/app
+    mem_limit: 128m
     enviroment:
       MYSQL_HOST: $MYSQL_HOST
       MYSQL_USER: $MYSQL_USER
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_PORT: $MYSQL_PORT
-    mem_limit: 128m
